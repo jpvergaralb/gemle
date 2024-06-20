@@ -11,7 +11,7 @@ gem "sprockets-rails"
 # Use sqlite3 as the database for Active Record
 # gem "sqlite3", "~> 1.4"
 # I will use postgres instead
-gem "pg", "~> 1.5.6"
+gem "pg", "~> 1.1"
 
 #dotenv
 gem 'dotenv-rails', groups: [:development, :test]
