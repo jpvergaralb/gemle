@@ -14,3 +14,9 @@ test:
   <<: *default
   database: <%= ENV['DB_NAME'] %>_test
 
+production:
+  <<: *default
+  database: railwayapp_production
+  username: railwayapp
+  password: <%= ENV['RAILWAYAPP_DATABASE_PASSWORD'] %>
+
