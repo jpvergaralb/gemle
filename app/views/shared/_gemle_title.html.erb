@@ -1,0 +1,9 @@
+
+<%= link_to root_path do %>
+    <div class="flex justify-center items-center gap-2 ml-4 font-bold text-2xl text-slate-600 dark:text-dark">
+        <%= image_tag "gem-2.svg", alt: "Gemle", class: img_css_class %>
+        <% unless !are_we_in_home? %>
+            <%= render partial:"shared/text_h2", locals: { text: "Gemle" }%>
+        <% end %>
+    </div>
+<% end %>

@@ -1,0 +1,18 @@
+<nav class="flex items-center <%= are_we_in_home? ? 'justify-between' : 'justify-end' %>">
+    <% if are_we_in_home? %>
+        <%= render partial: "shared/gemle_title", locals: { img_css_class: "w-10 h-10" } %>
+    <% end %>
+    <ul class="flex justify-end items-center gap-2 p-4">
+        <div data-controller="dark-mode">
+            <%= image_tag("toggle-mode.svg", class: 'w-6 h-6 hover:cursor-pointer', data: { action: 'click->dark-mode#toggle'}) %>
+        </div>
+        <li class="text-xl font-bold">
+            <%= link_to root_path do %>
+                <%= render partial: "shared/text_h2", locals: { text: "Your history"} %>
+            <% end %>
+        </li>
+    </ul>
+
+</nav>
+
+<%= render "layouts/dark_mode_check" %>
