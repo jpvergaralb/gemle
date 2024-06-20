@@ -4,7 +4,7 @@
     <% end %>
     <ul class="flex justify-end items-center gap-2 p-4">
         <div data-controller="dark-mode">
-            <%= image_tag("toggle-mode.svg", class: 'w-6 h-6 hover:cursor-pointer', data: { action: 'click->dark-mode#toggle'}) %>
+            <%= image_tag("sun.svg", class: 'w-6 h-6 hover:cursor-pointer', data: { action: 'click->dark-mode#toggle'}) %>
         </div>
         <li class="text-xl font-bold">
             <%= link_to root_path do %>
