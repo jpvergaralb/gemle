@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
     before_action :set_game, only: %i[show update destroy]
-    skip_before_action :verify_authenticity_token, only: [:create], if: :json_request?
+    skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy], if: :json_request?
   
     def index
       @games = Game.all
@@ -17,7 +17,7 @@ class GamesController < ApplicationController
     #   "game_type": "daily"
     # }
     def create
-      gemstone = Gemstone.order("RANDOM()").first
+      gemstone = pick_unique_random_gemstone()
       game_type = params[:game_type] || "daily"
   
       if game_type == "daily"
@@ -27,10 +27,10 @@ class GamesController < ApplicationController
           return
         end
       end
-  
+      puts Game.where(game_type: game_type).count + 1
       @game = Game.new(
         gemstone: gemstone,
-        game_number: Game.where(game_type: game_type).count + 1,
+        game_number: Game.where(game_type: game_type).maximum(:game_number).to_i + 1,
         game_type: game_type,
         date: Date.today
       )
@@ -75,6 +75,12 @@ class GamesController < ApplicationController
   
     def json_request?
       request.format.json?
+    end
+
+    def pick_unique_random_gemstone
+      used_gemstone_ids = Game.where.not(gemstone_id: nil).pluck(:gemstone_id)
+      gemstone = Gemstone.where.not(id: used_gemstone_ids).order("RANDOM()").first
+      gemstone
     end
   end
   
