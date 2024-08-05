@@ -1,0 +1,22 @@
+<div data-controller="puzzle" class="dark:text-slate-200 text-slate-900">
+  <% @puzzles.each do |puzzle| %>
+    <div class="my-4">
+      <p class="font-semibold"><%= puzzle.question %></p>
+      <input type="text" data-puzzle-target="input" data-puzzle-id="<%= puzzle.id %>" class="border p-2 text-slate-900" placeholder="Your answer...">
+      <button data-action="click->puzzle#check" data-puzzle-id="<%= puzzle.id %>" class="bg-blue-500 text-white px-4 py-2">Submit</button>
+      <p data-puzzle-target="revealText" data-puzzle-id="<%= puzzle.id %>" class="hidden mt-2 text-lg"></p>
+      <% if puzzle.image.present? %>
+        <%= image_tag puzzle.image , class: 'mt-2 w-32 h-32' %>
+      <% end %>
+      <% if puzzle.audio.present? %>
+        <audio controls class="mt-2">
+          <source src="/audios/<%= puzzle.audio %>" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+

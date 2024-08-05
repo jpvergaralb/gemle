@@ -1,0 +1,11 @@
+<h1 class="text-3xl font-bold">Puzzle Game</h1>
+<div data-controller="puzzle">
+  <% @puzzles.each do |puzzle| %>
+    <div class="my-4">
+      <p class="font-semibold"><%= puzzle.question %></p>
+      <input type="text" data-puzzle-target="input" class="border p-2" placeholder="Your answer...">
+      <button data-action="click->puzzle#check" data-puzzle-id="<%= puzzle.id %>" class="bg-blue-500 text-white px-4 py-2">Submit</button>
+      <img data-puzzle-target="image" src="<%= puzzle.image %>" class="hidden mt-2 w-32 h-32">
+    </div>
+  <% end %>
+</div>
